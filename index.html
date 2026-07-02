@@ -372,12 +372,14 @@
       </div>
       <form id="td-contact-form" onsubmit="submitContactForm(event)">
         <div class="td-form-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
-          <label style="display:block;"><span style="display:block;font-size:11px;letter-spacing:.16em;color:#A3B3A9;margin-bottom:8px;">FULL NAME</span><input type="text" required placeholder="Your name" class="td-input"></label>
-          <label style="display:block;"><span style="display:block;font-size:11px;letter-spacing:.16em;color:#A3B3A9;margin-bottom:8px;">EMAIL</span><input type="email" required placeholder="you@company.com" class="td-input"></label>
+          <label style="display:block;"><span style="display:block;font-size:11px;letter-spacing:.16em;color:#A3B3A9;margin-bottom:8px;">FULL NAME</span><input type="text" name="name" required placeholder="Your name" class="td-input"></label>
+          <label style="display:block;"><span style="display:block;font-size:11px;letter-spacing:.16em;color:#A3B3A9;margin-bottom:8px;">EMAIL</span><input type="email" name="email" required placeholder="you@company.com" class="td-input"></label>
         </div>
-        <label style="display:block;margin-bottom:16px;"><span style="display:block;font-size:11px;letter-spacing:.16em;color:#A3B3A9;margin-bottom:8px;">COMPANY</span><input type="text" placeholder="Organisation" class="td-input"></label>
-        <label style="display:block;margin-bottom:24px;"><span style="display:block;font-size:11px;letter-spacing:.16em;color:#A3B3A9;margin-bottom:8px;">HOW CAN WE HELP?</span><textarea rows="4" placeholder="Tell us about your engagement…" class="td-input" style="resize:vertical;"></textarea></label>
-        <button type="submit" class="td-submit">Send message</button>
+        <label style="display:block;margin-bottom:16px;"><span style="display:block;font-size:11px;letter-spacing:.16em;color:#A3B3A9;margin-bottom:8px;">COMPANY</span><input type="text" name="company" placeholder="Organisation" class="td-input"></label>
+        <label style="display:block;margin-bottom:24px;"><span style="display:block;font-size:11px;letter-spacing:.16em;color:#A3B3A9;margin-bottom:8px;">HOW CAN WE HELP?</span><textarea rows="4" name="message" placeholder="Tell us about your engagement…" class="td-input" style="resize:vertical;"></textarea></label>
+        <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" aria-hidden="true">
+        <div id="td-form-error" style="display:none;margin-bottom:16px;font-size:13.5px;color:#E8CC6B;">Something went wrong sending your message. Please email us directly at <a href="mailto:info@tadbiradvisory.com" style="color:#E8CC6B;">info@tadbiradvisory.com</a>.</div>
+        <button type="submit" id="td-submit-btn" class="td-submit">Send message</button>
       </form>
     </div>
   </div>
@@ -691,8 +693,27 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeProfile
 // ── Contact form ──────────────────────────────────────────────────────────────
 function submitContactForm(e) {
   e.preventDefault();
-  document.getElementById('td-contact-form').style.display = 'none';
-  document.getElementById('td-form-sent').style.display = 'block';
+  const form = document.getElementById('td-contact-form');
+  const btn = document.getElementById('td-submit-btn');
+  const errorBox = document.getElementById('td-form-error');
+  errorBox.style.display = 'none';
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+  fetch('contact.php', { method: 'POST', body: new FormData(form) })
+    .then(res => res.json().catch(() => ({ success: false })).then(data => ({ ok: res.ok, data })))
+    .then(({ ok, data }) => {
+      if (ok && data.success) {
+        form.style.display = 'none';
+        document.getElementById('td-form-sent').style.display = 'block';
+      } else {
+        throw new Error(data.error || 'Send failed');
+      }
+    })
+    .catch(() => {
+      errorBox.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Send message';
+    });
 }
 
 // ── Scroll reveal ─────────────────────────────────────────────────────────────

@@ -277,8 +277,7 @@
       <div data-reveal>
         <div style="position:relative;">
           <div style="position:absolute;top:16px;left:16px;right:-16px;bottom:-16px;border:1px solid var(--gold);border-radius:18px;z-index:0;"></div>
-          <div style="position:relative;z-index:1;border-radius:18px;overflow:hidden;aspect-ratio:4/4.6;box-shadow:0 40px 80px -50px rgba(15,61,46,0.8);background:radial-gradient(120% 90% at 50% 18%,#155943 0%,#0F3D2E 52%,#071D16 100%);">
-            <div style="position:absolute;inset:0;background:radial-gradient(58% 46% at 50% 46%,rgba(212,175,55,0.32) 0%,rgba(212,175,55,0.09) 55%,rgba(212,175,55,0) 100%);"></div>
+          <div style="position:relative;z-index:1;border-radius:18px;overflow:hidden;aspect-ratio:4/4.6;box-shadow:0 40px 80px -50px rgba(15,61,46,0.8);background:#E1E8E3;">
             <img src="assets/mubashar.png?v=2" alt="Mubashar Khan, FCA" style="position:relative;z-index:1;width:100%;height:100%;object-fit:contain;object-position:bottom center;">
           </div>
         </div>
@@ -332,7 +331,7 @@
 <div id="td-modal" class="td-modal-overlay" role="dialog" aria-modal="true" onclick="closeProfile()">
   <div id="td-modal-content" class="td-modal-grid" style="position:relative;width:100%;max-width:940px;background:var(--navy);color:#F1F4EF;border-radius:22px;overflow:hidden;box-shadow:0 50px 120px -40px rgba(0,0,0,0.9);border:1px solid rgba(212,175,55,0.22);" onclick="event.stopPropagation()">
     <button onclick="closeProfile()" aria-label="Close" style="position:absolute;top:16px;right:16px;z-index:3;background:rgba(0,0,0,0.4);border:1px solid rgba(241,244,239,0.25);color:#F1F4EF;width:40px;height:40px;border-radius:50%;font-size:20px;cursor:pointer;line-height:1;">×</button>
-    <div id="td-modal-img" style="position:relative;align-self:start;width:100%;aspect-ratio:1/1;background-color:#0F3D2E;background-size:cover;background-position:center 25%;background-repeat:no-repeat;"></div>
+    <div id="td-modal-img" style="position:relative;align-self:start;width:100%;aspect-ratio:1/1;background-color:#E1E8E3;background-size:cover;background-position:center 25%;background-repeat:no-repeat;"></div>
     <div id="td-modal-body" style="padding:clamp(28px,3.5vw,44px);overflow-y:auto;max-height:90vh;"></div>
   </div>
 </div>
@@ -638,7 +637,7 @@ function renderTeam() {
 
   document.getElementById('td-trainers-grid').innerHTML = trainers.map(p =>
     `<div class="td-trainer-card" role="button" tabindex="0" data-reveal onclick="openProfile('${p.id}')" onkeydown="if(event.key==='Enter')openProfile('${p.id}')">
-      <div style="width:100px;height:100px;border-radius:14px;flex:0 0 auto;background-color:#0C2B21;background-image:url('${p.img}');background-size:cover;background-position:center;background-repeat:no-repeat;" role="img" aria-label="${p.name}"></div>
+      <div style="width:100px;height:100px;border-radius:14px;flex:0 0 auto;background-color:#E1E8E3;background-image:url('${p.img}');background-size:cover;background-position:center;background-repeat:no-repeat;" role="img" aria-label="${p.name}"></div>
       <div style="min-width:0;">
         <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:22px;margin:0 0 3px;">${p.name}</h3>
         <div style="font-size:12.5px;color:var(--gold);font-weight:600;margin-bottom:8px;">${p.role}</div>

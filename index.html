@@ -532,6 +532,17 @@ const PEOPLE = [
     stats: [{ n: '23+', l: 'Years experience' }, { n: '6', l: 'Global MNCs' }, { n: '2', l: 'Doctorates' }]
   },
   {
+    id: 'zaid', name: 'M Zaid Kaliya', role: 'Advisor — Finance Transformation & Leadership',
+    img: 'assets/zaid.jpg',
+    short: 'CFO of TATA Pakistan, 18+ years of financial leadership, USD 30M+ in delivered savings.',
+    sub: 'FCA, DTM, FCCA — Finance Leadership',
+    creds: ['Fellow Chartered Accountant — ICAP', 'Fellow Member — ACCA (UK)', 'Certified Director (SECP)', 'Certified Internal Auditor (IIA)', 'Distinguished Toastmaster (DTM)'],
+    bio: 'Seasoned Chief Financial Officer with 18+ years of strategic financial leadership across the pharmaceutical, textile, distribution, retail and FMCG sectors, currently serving as CFO of TATA Pakistan. He has delivered over USD 30 million in savings through finance transformation, cost optimisation and disciplined project execution. He is serving as ICAP Council member and Chairman of ICAP\'s Professional Accountants in Business (PAIB) Committee, and has served as Country Head for Toastmasters International for Pakistan. He is a sought-after voice on finance leadership, governance and executive communication.',
+    expertise: ['Strategic Financial Leadership', 'Finance & Digital Transformation', 'Corporate Governance & Board Advisory', 'Cost Optimisation & Business Growth', 'Finance Communication & Storytelling', 'Leadership Development & Public Speaking'],
+    engagements: null,
+    stats: [{ n: '18+', l: 'Years of financial leadership' }, { n: 'USD 30M+', l: 'Savings delivered' }, { n: '5', l: 'Industry sectors served' }]
+  },
+  {
     id: 'salman', name: 'Mohammad Salman Khan', role: 'Subject Matter Expert & Corporate Trainer — Risk & GRC',
     img: 'assets/salman.png?v=2',
     short: 'ISO 31000 & CORP certified risk trainer — 5,000+ professionals trained across 100+ organisations.',
@@ -617,8 +628,8 @@ function setTab(i) { activeTab = i; renderServices(); }
 
 // ── Team cards ────────────────────────────────────────────────────────────────
 function renderTeam() {
-  const advisors = PEOPLE.slice(0, 4);
-  const trainers = PEOPLE.slice(4);
+  const advisors = PEOPLE.slice(0, 5);
+  const trainers = PEOPLE.slice(5);
 
   document.getElementById('td-advisors-grid').innerHTML = advisors.map(p =>
     `<div class="td-adv-card" role="button" tabindex="0" data-reveal onclick="openProfile('${p.id}')" onkeydown="if(event.key==='Enter')openProfile('${p.id}')">
